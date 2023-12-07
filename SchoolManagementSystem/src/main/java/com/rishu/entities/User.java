@@ -1,5 +1,6 @@
 package com.rishu.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rishu.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,13 +11,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="user")
+@Table(name="users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,6 +34,15 @@ public class User implements UserDetails {
     private String gender;
     private UserRole role;
 
+    //mapping b/w student and fee
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Fee> fees;
+
+    //mapping b/w student and leaves
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<StudentLeave> studentLeave;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

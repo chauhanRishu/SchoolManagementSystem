@@ -51,12 +51,6 @@ public class AdminController {
         return this.adminService.deleteStudent(studentId);
     }
 
-    //create or post
-    @PostMapping("/payfee/{studentId}")
-    public Fee payFee(@PathVariable Integer studentId,@RequestBody Fee fee)
-    {
-        return this.adminService.payFee(studentId,fee);
-    }
 
     //teacher operation
     //create
@@ -91,7 +85,7 @@ public class AdminController {
     @PutMapping("/updateteacher/{teacherId}")
     public Teacher updateTeacher(@PathVariable Integer teacherId,@RequestBody Teacher teacher)
     {
-        return this.updateTeacher(teacherId,teacher);
+        return this.adminService.updateTeacher(teacherId,teacher);
     }
 
 

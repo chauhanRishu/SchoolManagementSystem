@@ -1,12 +1,10 @@
 package com.rishu.service;
 
 
-import com.rishu.entities.Fee;
 import com.rishu.entities.Teacher;
 import com.rishu.entities.User;
 import com.rishu.enums.UserRole;
 import com.rishu.repository.UserRepo;
-import com.rishu.repository.FeeRepo;
 import com.rishu.repository.TeacherRepo;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +21,7 @@ public class AdminService {
     private UserRepo userRepo;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
-    private FeeRepo feeRepo;
+
     @Autowired
     private TeacherRepo teacherRepo;
 
@@ -84,13 +81,14 @@ public class AdminService {
         User newData=new User();
         if(data.getName()!=null)
         {
-            newData.setId(updateData.getId());
+            newData.setId(studentId);
             newData.setName(updateData.getName());
             newData.setAddress(updateData.getAddress());
             newData.setEmail(updateData.getEmail());
             //newData.setClass(updateData.getClass());
             newData.setMobileNumber(updateData.getMobileNumber());
             newData.setGender(updateData.getGender());
+            newData.setRole(UserRole.STUDENT);
             newData.setPassword(this.passwordEncoder.encode(updateData.getPassword()));
             this.userRepo.save(newData);
         }
@@ -108,28 +106,7 @@ public class AdminService {
         return "student delete with Id : "+studentId+" successfully!!";
     }
 
-    //create or pay fee
-    public Fee payFee(int studentId,Fee feeData)
-    {
-        User data=this.userRepo.findById(studentId).get();
-        Fee fee=new Fee();
-        if(data.getName()!=null)
-        {
-            fee.setStudentId(studentId);
-            fee.setMonth(feeData.getMonth());
-            fee.setAmount(feeData.getAmount());
-            fee.setGivenBy(feeData.getGivenBy());
-            fee.setDescription(feeData.getDescription());
-            fee.setCreateDate(feeData.getCreateDate());
-            this.feeRepo.save(fee);
-        }
-        else
-        {
-            System.out.println("Student not found with student Id : "+studentId);
-        }
-        return fee;
 
-    }
 
     //teacher operation
     //create
