@@ -50,7 +50,7 @@ public class AdminService {
         studenData.setAddress(saveData.getAddress());
         studenData.setEmail(saveData.getEmail());
         studenData.setPassword(this.passwordEncoder.encode(saveData.getPassword()));
-        //studenData.setClass(saveData.getClass());
+        studenData.setStudentclass(saveData.getStudentclass());
         studenData.setMobileNumber(saveData.getMobileNumber());
         studenData.setAddress(saveData.getAddress());
         studenData.setGender(saveData.getGender());
@@ -85,7 +85,7 @@ public class AdminService {
             newData.setName(updateData.getName());
             newData.setAddress(updateData.getAddress());
             newData.setEmail(updateData.getEmail());
-            //newData.setClass(updateData.getClass());
+            newData.setStudentclass(updateData.getStudentclass());
             newData.setMobileNumber(updateData.getMobileNumber());
             newData.setGender(updateData.getGender());
             newData.setRole(UserRole.STUDENT);

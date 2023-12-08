@@ -41,7 +41,7 @@ public class StudentService {
             newData.setId(studentId);
             newData.setName(updateData.getName());
             newData.setEmail(updateData.getEmail());
-            //newData.setClass(updateData.getClass());
+            newData.setStudentclass(updateData.getStudentclass());
             newData.setMobileNumber(updateData.getMobileNumber());
             newData.setAddress(updateData.getAddress());
             newData.setGender(updateData.getGender());

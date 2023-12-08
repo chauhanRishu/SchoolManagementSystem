@@ -26,8 +26,7 @@ public class User implements UserDetails {
     private String name;
     private String email;
     private String password;
-   // @Column(name = "class")
-   // private String Class;
+    private String studentclass;
     @Column(name="contact",length = 10)
     private String mobileNumber;
     private String address;
