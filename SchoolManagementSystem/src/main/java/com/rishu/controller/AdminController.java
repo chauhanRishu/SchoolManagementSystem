@@ -1,9 +1,9 @@
 package com.rishu.controller;
 
-import com.rishu.entities.Fee;
 import com.rishu.entities.Teacher;
 import com.rishu.entities.User;
 import com.rishu.service.AdminService;
+import com.rishu.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +16,8 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private TeacherService teacherService;
 
     //create
     @PostMapping("/poststudent")
@@ -57,7 +59,7 @@ public class AdminController {
     @PostMapping("/postteacher")
     public Teacher addTeacher(@RequestBody Teacher teacher)
     {
-        return this.adminService.createTeacher(teacher);
+        return this.teacherService.createTeacher(teacher);
     }
 
     //read
@@ -65,27 +67,27 @@ public class AdminController {
     @GetMapping("/getteacher/{teacherId}")
     public Teacher getTeacherById(@PathVariable Integer teacherId)
     {
-        return this.adminService.getTeacherById(teacherId);
+        return this.teacherService.getTeacherById(teacherId);
     }
 
     @GetMapping("/getallteacher")
     public List<Teacher> getAllTeacherlist()
     {
-        return this.adminService.getAllTeacherRecord();
+        return this.teacherService.getAllTeacherRecord();
     }
 
     //delete
     @DeleteMapping("/deleteteacher/{teacherId}")
     public String deleteTeacher(@PathVariable Integer teacherId)
     {
-        return this.adminService.deleteTeacher(teacherId);
+        return this.teacherService.deleteTeacher(teacherId);
     }
 
     //update
     @PutMapping("/updateteacher/{teacherId}")
     public Teacher updateTeacher(@PathVariable Integer teacherId,@RequestBody Teacher teacher)
     {
-        return this.adminService.updateTeacher(teacherId,teacher);
+        return this.teacherService.updateTeacher(teacherId,teacher);
     }
 
 

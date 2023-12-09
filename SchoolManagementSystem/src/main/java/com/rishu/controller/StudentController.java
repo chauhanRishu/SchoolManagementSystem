@@ -3,6 +3,9 @@ package com.rishu.controller;
 import com.rishu.entities.Fee;
 import com.rishu.entities.StudentLeave;
 import com.rishu.entities.User;
+import com.rishu.repository.FeeRepo;
+import com.rishu.service.FeeService;
+import com.rishu.service.StudentLeaveService;
 import com.rishu.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +17,10 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private FeeService feeService;
+    @Autowired
+    private StudentLeaveService studentLeaveService;
 
     //get student
     @GetMapping("/{studentId}")
@@ -32,14 +39,14 @@ public class StudentController {
     @PostMapping("/payfee")
     public Fee payFee( @RequestBody Fee fee)
     {
-        return this.studentService.payFee(fee);
+        return this.feeService.payFee(fee);
     }
 
     //applyleave or create
     @PostMapping("/applyleave")
     public StudentLeave applyLeave( @RequestBody StudentLeave studentLeave)
     {
-        return this.studentService.applyLeave(studentLeave);
+        return this.studentLeaveService.applyLeave(studentLeave);
     }
 
 

@@ -1,13 +1,11 @@
 package com.rishu.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 @Entity
 @Getter
 @Setter
@@ -23,8 +21,8 @@ public class StudentLeave {
 
     private String body;
 
-    /*@Column(name = "user_id")
-    private int user_id;*/
+    private String date;
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "Id")
     private User user;

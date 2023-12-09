@@ -1,12 +1,9 @@
 package com.rishu.service;
 
 
-import com.rishu.entities.Fee;
-import com.rishu.entities.StudentLeave;
+
 import com.rishu.entities.User;
 import com.rishu.enums.UserRole;
-import com.rishu.repository.FeeRepo;
-import com.rishu.repository.StudentLeaveRepo;
 import com.rishu.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,10 +16,7 @@ public class StudentService {
     private UserRepo userRepo;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
-    private FeeRepo feeRepo;
-    @Autowired
-    private StudentLeaveRepo leaveRepo;
+
 
     //read
     public User getStudentById(int studentId)
@@ -54,25 +48,6 @@ public class StudentService {
             System.out.println("Student not found with student Id : "+studentId);
         }
         return newData;
-    }
-
-    //payfee
-    public Fee payFee(Fee feeData)
-    {
-        Fee fee=new Fee();
-        fee.setMonth(feeData.getMonth());
-        fee.setAmount(feeData.getAmount());
-        fee.setGivenBy(feeData.getGivenBy());
-        fee.setDescription(feeData.getDescription());
-        return this.feeRepo.save(fee);
-    }
-    //apply leave or create
-    public StudentLeave applyLeave(StudentLeave leaveData)
-    {
-        StudentLeave leave=new StudentLeave();
-        leave.setSubject(leaveData.getSubject());
-        leave.setBody(leaveData.getBody());
-        return this.leaveRepo.save(leave);
     }
 
 }

@@ -42,6 +42,7 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<StudentLeave> studentLeave;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

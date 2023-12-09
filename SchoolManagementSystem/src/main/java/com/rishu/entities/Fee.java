@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
@@ -28,8 +26,8 @@ public class Fee {
 
     private String description;
 
-   // @Column(name = "user_id")
-   // private int user_id;
+    private String date;
+
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "Id")
